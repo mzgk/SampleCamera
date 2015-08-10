@@ -7,20 +7,21 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class CameraViewController: UIImagePickerController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        // Do any additional setup after loading the view.
+//    }
+//
+//    override func didReceiveMemoryWarning() {
+//        super.didReceiveMemoryWarning()
+//        // Dispose of any resources that can be recreated.
+//    }
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation
@@ -48,5 +49,20 @@ class CameraViewController: UIImagePickerController {
     // サポートする向きを指定する（LandscapeRight：ホームボタンが右側）
     override func supportedInterfaceOrientations() -> Int {
         return Int(UIInterfaceOrientationMask.LandscapeRight.rawValue)
+    }
+
+    // カメラに関する設定部分
+    func setupCamera() {
+        self.sourceType = UIImagePickerControllerSourceType.Camera
+        self.mediaTypes = [kUTTypeMovie]
+        self.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
+        self.videoQuality = UIImagePickerControllerQualityType.TypeHigh
+        self.cameraDevice = UIImagePickerControllerCameraDevice.Rear
+        self.allowsEditing = true
+        self.showsCameraControls = true
+
+        let overlayView: UIView = UINib(nibName: "OverlayView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! UIView
+        overlayView.frame = self.view.frame
+        self.cameraOverlayView = overlayView
     }
 }

@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import MobileCoreServices
+//import MobileCoreServices
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var overlayView: UIView!
+//    var overlayView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,22 +33,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // カメラが回転する版
     @IBAction func runCamera(sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            let picker = UIImagePickerController()
+//            let picker = UIImagePickerController()
+//            picker.delegate = self
+//            picker.sourceType = UIImagePickerControllerSourceType.Camera
+//            picker.mediaTypes = [kUTTypeMovie]
+//            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
+////            picker.videoQuality = UIImagePickerControllerQualityType.TypeIFrame1280x720
+//            picker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
+//            picker.cameraDevice = UIImagePickerControllerCameraDevice.Rear
+//            picker.allowsEditing = true
+//            picker.showsCameraControls = true   // 完全にカスタム画面を使う場合はfalseにする
+//
+//            // カメラ上にViewを表示させる
+//            let overlayView: UIView = UINib(nibName: "OverlayView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! UIView
+//            overlayView.frame = picker.view.frame
+//            picker.cameraOverlayView = overlayView
+
+//            self.presentViewController(picker, animated: true, completion: nil)
+
+            let picker = CameraViewController()
+            picker.setupCamera()
             picker.delegate = self
-            picker.sourceType = UIImagePickerControllerSourceType.Camera
-            picker.mediaTypes = [kUTTypeMovie]
-            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
-//            picker.videoQuality = UIImagePickerControllerQualityType.TypeIFrame1280x720
-            picker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
-            picker.cameraDevice = UIImagePickerControllerCameraDevice.Rear
-            picker.allowsEditing = true
-            picker.showsCameraControls = true   // 完全にカスタム画面を使う場合はfalseにする
-
-            // カメラ上にViewを表示させる
-            let overlayView: UIView = UINib(nibName: "OverlayView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! UIView
-            overlayView.frame = picker.view.frame
-            picker.cameraOverlayView = overlayView
-
             self.presentViewController(picker, animated: true, completion: nil)
         }
         else {
@@ -82,18 +87,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             // 回転抑止のために作成したサブクラスを呼び出す
             let picker = CameraViewController()
             picker.delegate = self
-            picker.sourceType = UIImagePickerControllerSourceType.Camera
-            picker.mediaTypes = [kUTTypeMovie]
-            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
-            picker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
-            picker.cameraDevice = UIImagePickerControllerCameraDevice.Rear
-            picker.allowsEditing = true
-            picker.showsCameraControls = true
-
-            // OverlayViewを作成し、セットする
-            let overlayView: UIView = UINib(nibName: "OverlayView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! UIView
-            overlayView.frame = picker.view.frame
-            picker.cameraOverlayView = overlayView
+            picker.setupCamera()    // 下記のカメラに関する設定部分はCameraViewControllerに移動
+//            picker.sourceType = UIImagePickerControllerSourceType.Camera
+//            picker.mediaTypes = [kUTTypeMovie]
+//            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
+//            picker.videoQuality = UIImagePickerControllerQualityType.TypeHigh
+//            picker.cameraDevice = UIImagePickerControllerCameraDevice.Rear
+//            picker.allowsEditing = true
+//            picker.showsCameraControls = true
+//
+//            // OverlayViewを作成し、セットする
+//            let overlayView: UIView = UINib(nibName: "OverlayView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! UIView
+//            overlayView.frame = picker.view.frame
+//            picker.cameraOverlayView = overlayView
 
             self.presentViewController(picker, animated: true, completion: nil)
         }
