@@ -52,7 +52,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //            self.presentViewController(picker, animated: true, completion: nil)
 
             let picker = CameraViewController()
-            picker.setupCamera()
             picker.delegate = self
             self.presentViewController(picker, animated: true, completion: nil)
         }
@@ -87,7 +86,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             // 回転抑止のために作成したサブクラスを呼び出す
             let picker = CameraViewController()
             picker.delegate = self
-            picker.setupCamera()    // 下記のカメラに関する設定部分はCameraViewControllerに移動
 //            picker.sourceType = UIImagePickerControllerSourceType.Camera
 //            picker.mediaTypes = [kUTTypeMovie]
 //            picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
